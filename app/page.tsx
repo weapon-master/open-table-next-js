@@ -1,6 +1,20 @@
+'use client';
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ChangeEvent, useCallback, useState } from "react";
 
 export default function Home() {
+  const router = useRouter();
+  const [ kw, setKw ] = useState("");
+  const onKwChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setKw(e.target.value);
+  }, []);
+  const onSearch = useCallback(() => {
+    if (!kw) {
+      return;
+    }
+    router.push(`/search?kw=${kw}`);
+  }, [kw, router]);
   return (
     <main className="bg-gray-100 min-h-screen w-screen">
       <main className="max-w-screen-2xl m-auto bg-white">
@@ -33,8 +47,10 @@ export default function Home() {
                   className="rounded  mr-3 p-2 w-[450px]"
                   type="text"
                   placeholder="State, city or town"
+                  value={kw}
+                  onChange={ onKwChange }
                 />
-                <button className="rounded bg-red-600 px-9 py-2 text-white">
+                <button className="rounded bg-red-600 px-9 py-2 text-white" onClick={onSearch}>
                   Let&apos;s go
                 </button>
               </div>
