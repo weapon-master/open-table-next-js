@@ -1,6 +1,10 @@
 import React from "react";
 import Header from "./components/Header";
 
+export const metadata = {
+  title: "Milesstone Grill | Open Table",
+};
+
 export default function RestaurantLayout({
   children,
 }: {

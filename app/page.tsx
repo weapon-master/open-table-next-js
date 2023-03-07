@@ -1,4 +1,3 @@
-import Navbar from "./components/Navbar";
 import RestaurantCard from "./components/RestaurantCard";
 import SearchHeader from "./components/SearchHeader";
 

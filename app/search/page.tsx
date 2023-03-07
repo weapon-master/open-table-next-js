@@ -2,6 +2,10 @@ import RestaurantCard from "./components/RestaurantCard";
 import SearchHeader from "./components/SearchHeader";
 import SearchSidebar from "./components/SearchSidebar";
 
+export const metadata = {
+  title: "Search | Open Table",
+}
+
 export default function Search() {
   return (
     <>
