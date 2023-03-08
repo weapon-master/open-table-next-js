@@ -1,11 +1,13 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { ChangeEvent, useCallback, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function Searchbar() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [city, setCity] = useState(searchParams.get("city") || "");
+  const [cuisine, setCuisine] = useState(searchParams.get("cuisine") || "");
+  const [price, setPrice] = useState(searchParams.get("price") || "");
   const onKwChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
   }, []);
@@ -15,6 +17,11 @@ export default function Searchbar() {
     }
     router.push(`/search?city=${city}`);
   }, [city, router]);
+  useEffect(() => {
+    setCity(searchParams.get("city") || "");
+    setCuisine(searchParams.get("cuisine") || "");
+    setPrice(searchParams.get("price") || "");
+  }, [searchParams]);
   return (
     <div className="text-left text-lg py-3 m-auto flex justify-center">
       <input

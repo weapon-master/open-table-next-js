@@ -1,3 +1,4 @@
+import PriceLabel from "@/app/components/PriceLabel";
 import Link from "next/link";
 import { RestaurantCardType } from "../page";
 
@@ -18,7 +19,7 @@ export default function RestaurantCard({ restaurant }: Props) {
           </div>
           <div className="mb-9">
             <div className="font-light flex text-reg">
-              <p className="mr-4">$$$</p>
+              <PriceLabel price={restaurant.price} />
               <p className="mr-4 capitalize">{restaurant.cusine.name}</p>
               <p className="mr-4 capitalize">{restaurant.location.name}</p>
             </div>
