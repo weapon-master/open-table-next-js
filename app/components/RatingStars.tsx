@@ -17,7 +17,7 @@ export default function RatingStars({ reviews }: Props) {
   const emptyStarsCount = 5 - fullStarsCount - halfStarsCount;
   if (reviews.length === 0) return null;
   return (
-    <div className="flex items-center">
+    <div className="flex items-center justify-between w-16">
       {[...Array(fullStarsCount)].map((_, i) => (
         <Image width={12} height={12} key={i} src={fullStar} alt="full star" />
       ))}
