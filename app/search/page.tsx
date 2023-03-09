@@ -1,11 +1,11 @@
-import RestaurantCard from "./components/RestaurantCard";
-import SearchHeader from "./components/SearchHeader";
-import SearchSidebar from "./components/SearchSidebar";
-import { Price } from "@prisma/client";
-import { prisma } from "@/app/utils/prisma";
+import RestaurantCard from './components/RestaurantCard';
+import SearchHeader from './components/SearchHeader';
+import SearchSidebar from './components/SearchSidebar';
+import { Price } from '@prisma/client';
+import { prisma } from '@/app/utils/prisma';
 
 export const metadata = {
-  title: "Search | Open Table",
+  title: 'Search | Open Table',
 };
 
 const getRestaurants = async ({
@@ -21,13 +21,13 @@ const getRestaurants = async ({
     location: {
       name: {
         contains: city,
-        mode: "insensitive" as const,
+        mode: 'insensitive' as const,
       },
     },
     cusine: {
       name: {
         contains: cuisine,
-        mode: "insensitive" as const,
+        mode: 'insensitive' as const,
       },
     },
   };
@@ -82,15 +82,15 @@ export default async function Search({
   return (
     <>
       <SearchHeader />
-      <div className="flex py-4 m-auto w-2/3 justify-between items-start">
+      <div className='flex py-4 m-auto w-2/3 justify-between items-start'>
         <SearchSidebar locations={locations} cuisines={cuisines} />
-        <div className="w-5/6">
+        <div className='w-5/6'>
           {restaurants.length ? (
             restaurants.map((restaurant) => (
               <RestaurantCard key={restaurant.id} restaurant={restaurant} />
             ))
           ) : (
-            <p className="text-dark">Not restaurants found</p>
+            <p className='text-dark'>Not restaurants found</p>
           )}
         </div>
       </div>

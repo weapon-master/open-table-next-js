@@ -1,12 +1,12 @@
-import Images from "./components/Images";
-import Rating from "./components/Rating";
-import ReservationCard from "./components/ReservationCard";
-import RestaurantNavbar from "./components/RestaurantNavbar";
-import Reviews from "./components/Reviews";
-import Title from "./components/Title";
+import Images from './components/Images';
+import Rating from './components/Rating';
+import ReservationCard from './components/ReservationCard';
+import RestaurantNavbar from './components/RestaurantNavbar';
+import Reviews from './components/Reviews';
+import Title from './components/Title';
 
-import Description from "./components/Description";
-import { getRestaurant } from "./utils";
+import Description from './components/Description';
+import { getRestaurant } from './utils';
 
 const RestaurantDetail = async ({
   params: { slug },
@@ -19,7 +19,7 @@ const RestaurantDetail = async ({
   }
   return (
     <>
-      <div className="bg-white w-[70%] rounded p-3 shadow">
+      <div className='bg-white w-[70%] rounded p-3 shadow'>
         <RestaurantNavbar slug={restaurant.slug} />
         <Title name={restaurant.name} />
         <Rating reviews={restaurant.reviews} />

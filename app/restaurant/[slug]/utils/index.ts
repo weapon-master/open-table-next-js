@@ -1,5 +1,5 @@
-import { prisma } from "@/app/utils/prisma";
-import { notFound } from "next/navigation";
+import { prisma } from '@/app/utils/prisma';
+import { notFound } from 'next/navigation';
 
 export const getRestaurant = async (slug: string) => {
   const restaurant = await prisma.restaurant.findUnique({

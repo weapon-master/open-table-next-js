@@ -1,5 +1,5 @@
-import { Price } from "@prisma/client";
-import React, { useMemo } from "react";
+import { Price } from '@prisma/client';
+import React, { useMemo } from 'react';
 
 export default function PriceLabel({ price }: { price: Price }) {
   const priceContent = useMemo(() => {
@@ -7,7 +7,7 @@ export default function PriceLabel({ price }: { price: Price }) {
       return (
         <>
           <span>$$</span>
-          <span className="text-gray-400">$$</span>
+          <span className='text-gray-400'>$$</span>
         </>
       );
     }
@@ -15,7 +15,7 @@ export default function PriceLabel({ price }: { price: Price }) {
       return (
         <>
           <span>$$$</span>
-          <span className="text-gray-400">$</span>
+          <span className='text-gray-400'>$</span>
         </>
       );
     }
@@ -28,5 +28,5 @@ export default function PriceLabel({ price }: { price: Price }) {
     }
     return null;
   }, [price]);
-  return <div className="mr-3">{priceContent}</div>;
+  return <div className='mr-3'>{priceContent}</div>;
 }

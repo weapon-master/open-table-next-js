@@ -1,7 +1,7 @@
-"use client";
-import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+'use client';
+import Link from 'next/link';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import React from 'react';
 
 interface Props {
   queryKey: string;
@@ -24,7 +24,7 @@ export default function SidebarItem({
   }
   return (
     <Link
-      className="font-dark text-reg capitalize hover:text-blue-600"
+      className='font-dark text-reg capitalize hover:text-blue-600'
       href={{ pathname, query: { ...currentQuery, [queryKey]: target } }}
     >
       {children}

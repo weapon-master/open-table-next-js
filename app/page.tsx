@@ -1,6 +1,6 @@
-import RestaurantCard from "./components/RestaurantCard";
-import SearchHeader from "./components/SearchHeader";
-import { prisma } from "./utils/prisma";
+import RestaurantCard from './components/RestaurantCard';
+import SearchHeader from './components/SearchHeader';
+import { prisma } from './utils/prisma';
 
 const getRestaurants = async () =>
   prisma.restaurant.findMany({
@@ -25,7 +25,7 @@ export default async function Home() {
   return (
     <main>
       <SearchHeader />
-      <div className="py-3 px-36 mt-10 flex flex-wrap justify-center">
+      <div className='py-3 px-36 mt-10 flex flex-wrap justify-center'>
         {restaurants.map((restaurant) => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         ))}
