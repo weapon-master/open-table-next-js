@@ -1,6 +1,7 @@
 "use client";
 import { Cusine, Location } from "@prisma/client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useMemo } from "react";
 import SidebarItem from "./SidebarItem";
 
 interface Props {
@@ -13,11 +14,20 @@ export default function SearchSidebar({ locations, cuisines }: Props) {
   const currentCity = searchParams.get("city") || "";
   const currentCuisine = searchParams.get("cuisine") || "";
   const currentPrice = searchParams.get("price") || "";
-  const currentQuery = {
-    city: currentCity,
-    cuisine: currentCuisine,
-    price: currentPrice,
-  };
+  const currentQuery = useMemo(() => {
+    let q = {};
+    if (currentCity) {
+      q = { ...q, city: currentCity };
+    }
+    if (currentCuisine) {
+      q = { ...q, cuisine: currentCuisine };
+    }
+    if (currentPrice) {
+      q = { ...q, price: currentPrice };
+    }
+    return q;
+  }, [currentCity, currentCuisine, currentPrice]);
+
   return (
     <div className="w-1/5">
       <div className="border-b pb-4">
