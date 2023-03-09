@@ -12,6 +12,7 @@ const getRestaurants = async () =>
       cusine: true,
       location: true,
       price: true,
+      reviews: true,
     },
   });
 

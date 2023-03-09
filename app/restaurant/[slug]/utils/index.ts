@@ -12,5 +12,6 @@ export const getRestaurant = async (slug: string) =>
       images: true,
       description: true,
       location: true,
+      reviews: true,
     },
   });

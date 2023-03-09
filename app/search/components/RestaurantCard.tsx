@@ -1,4 +1,6 @@
 import PriceLabel from "@/app/components/PriceLabel";
+import RatingStars from "@/app/components/RatingStars";
+import RatingText from "@/app/components/RatingText";
 import Link from "next/link";
 import { RestaurantCardType } from "../page";
 
@@ -14,8 +16,8 @@ export default function RestaurantCard({ restaurant }: Props) {
         <div className="pl-5">
           <h2 className="text-3xl">{restaurant.name}</h2>
           <div className="flex items-start">
-            <div className="flex mb-2">*****</div>
-            <p className="ml-2 text-sm">Awesome</p>
+            <RatingStars reviews={restaurant.reviews} />
+            <RatingText reviews={restaurant.reviews} />
           </div>
           <div className="mb-9">
             <div className="font-light flex text-reg">

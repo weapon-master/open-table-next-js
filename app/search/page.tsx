@@ -41,6 +41,7 @@ const getRestaurants = async ({
       mainImage: true,
       cusine: true,
       price: true,
+      reviews: true,
     },
   });
 };
