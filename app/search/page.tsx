@@ -1,9 +1,8 @@
 import RestaurantCard from "./components/RestaurantCard";
 import SearchHeader from "./components/SearchHeader";
 import SearchSidebar from "./components/SearchSidebar";
-import { Price, PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Price } from "@prisma/client";
+import { prisma } from "@/app/utils/prisma";
 
 export const metadata = {
   title: "Search | Open Table",
@@ -48,8 +47,20 @@ const getRestaurants = async ({
 export type RestaurantCardType = UnpackArray<
   UnpackPromise<ReturnType<typeof getRestaurants>>
 >;
-const getLocations = async () => prisma.location.findMany();
-const getCuisines = async () => prisma.cusine.findMany();
+const getLocations = async () =>
+  prisma.location.findMany({
+    select: {
+      name: true,
+      id: true,
+    },
+  });
+const getCuisines = async () =>
+  prisma.cusine.findMany({
+    select: {
+      name: true,
+      id: true,
+    },
+  });
 
 export default async function Search({
   searchParams,

@@ -1,17 +1,16 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/app/utils/prisma";
 
-const prisma = new PrismaClient();
-
-export const getRestaurant = async (slug: string) => prisma.restaurant.findUnique({
-  where: {
-    slug,
-  },
-  select: {
-    id: true,
-    name: true,
-    slug: true,
-    images: true,
-    description: true,
-    location: true,
-  },
-});
+export const getRestaurant = async (slug: string) =>
+  prisma.restaurant.findUnique({
+    where: {
+      slug,
+    },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      images: true,
+      description: true,
+      location: true,
+    },
+  });

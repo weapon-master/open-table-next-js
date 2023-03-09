@@ -4,17 +4,20 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import SidebarItem from "./SidebarItem";
 
 interface Props {
-  locations: Location[];
-  cuisines: Cusine[];
+  locations: Pick<Location, "name" | "id">[];
+  cuisines: Pick<Cusine, "name" | "id">[];
 }
 
 export default function SearchSidebar({ locations, cuisines }: Props) {
   const searchParams = useSearchParams();
-  const pathname = usePathname();
   const currentCity = searchParams.get("city") || "";
   const currentCuisine = searchParams.get("cuisine") || "";
   const currentPrice = searchParams.get("price") || "";
-  const router = useRouter();
+  const currentQuery = {
+    city: currentCity,
+    cuisine: currentCuisine,
+    price: currentPrice,
+  };
   return (
     <div className="w-1/5">
       <div className="border-b pb-4">
@@ -23,6 +26,7 @@ export default function SearchSidebar({ locations, cuisines }: Props) {
           <SidebarItem
             key={location.id}
             queryKey="city"
+            currentQuery={currentQuery}
             target={location.name}
             active={location.name === currentCity}
           >
@@ -38,6 +42,7 @@ export default function SearchSidebar({ locations, cuisines }: Props) {
           <SidebarItem
             key={cusine.id}
             queryKey="cuisine"
+            currentQuery={currentQuery}
             target={cusine.name}
             active={cusine.name === currentCuisine}
           >
@@ -49,19 +54,21 @@ export default function SearchSidebar({ locations, cuisines }: Props) {
       </div>
       <div className="mt-3 pb-4">
         <h1 className="mb-2">Price</h1>
-        <div className="flex">
+        <div className="flex p-4">
           <SidebarItem
             queryKey="price"
             target="CHEAP"
+            currentQuery={currentQuery}
             active={currentPrice === "CHEAP"}
           >
-            <button className="border-r border-t border-b w-full text-reg font-light p-2 rounded-l">
+            <button className="border-l border-r border-t border-b w-full text-reg font-light p-2 rounded-l">
               $
             </button>
           </SidebarItem>
           <SidebarItem
             queryKey="price"
             target="MEDIUM"
+            currentQuery={currentQuery}
             active={currentPrice === "MEDIUM"}
           >
             <button className="border-r border-t border-b w-full text-reg font-light p-2">
@@ -71,9 +78,10 @@ export default function SearchSidebar({ locations, cuisines }: Props) {
           <SidebarItem
             queryKey="price"
             target="EXPENSIVE"
+            currentQuery={currentQuery}
             active={currentPrice === "EXPENSIVE"}
           >
-            <button className="border-t border-b w-full text-reg font-light p-2 rounded-r">
+            <button className="border-t border-r border-b w-full text-reg font-light p-2 rounded-r">
               $$$
             </button>
           </SidebarItem>
