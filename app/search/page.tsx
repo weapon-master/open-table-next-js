@@ -31,7 +31,7 @@ const getRestaurants = async ({
       },
     },
   };
-  return prisma.restaurant.findMany({
+  const restaurants = await prisma.restaurant.findMany({
     where: price ? { ...where, price: { equals: price } } : where,
     select: {
       id: true,
@@ -44,6 +44,7 @@ const getRestaurants = async ({
       reviews: true,
     },
   });
+  return restaurants;
 };
 export type RestaurantCardType = UnpackArray<
   UnpackPromise<ReturnType<typeof getRestaurants>>

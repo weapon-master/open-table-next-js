@@ -1,7 +1,8 @@
 import { prisma } from "@/app/utils/prisma";
+import { notFound } from "next/navigation";
 
-export const getRestaurant = async (slug: string) =>
-  prisma.restaurant.findUnique({
+export const getRestaurant = async (slug: string) => {
+  const restaurant = await prisma.restaurant.findUnique({
     where: {
       slug,
     },
@@ -15,3 +16,7 @@ export const getRestaurant = async (slug: string) =>
       reviews: true,
     },
   });
+
+  if (!restaurant) notFound();
+  return restaurant;
+};
