@@ -1,6 +1,6 @@
 'use client';
 
-import LoginModal from './LoginModal';
+import AuthModal from './AuthModal';
 
 export default function Navbar() {
   return (
@@ -10,8 +10,8 @@ export default function Navbar() {
       </a>
       <div>
         <div className='flex'>
-          <LoginModal type='signin' />
-          <LoginModal type='signup' />
+          <AuthModal type='signin' />
+          <AuthModal type='signup' />
         </div>
       </div>
     </nav>
