@@ -20,3 +20,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 }
+
+export const config = {
+  matcher: ['/api/auth/me'],
+};

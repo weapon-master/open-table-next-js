@@ -33,6 +33,20 @@ export default function AuthModal({ type }: Props) {
     city: '',
     password: '',
   });
+  const disabled = React.useMemo(() => {
+    if (type === 'signin') {
+      return !inputs.email || !inputs.password;
+    }
+    return (
+      !inputs.firstName ||
+      !inputs.lastName ||
+      !inputs.email ||
+      !inputs.phone ||
+      !inputs.city ||
+      !inputs.password
+    );
+  }, [inputs, type]);
+
   const onInputsChange = React.useCallback((newInputs: Partial<Inputs>) => {
     setInputs((prev) => ({ ...prev, ...newInputs }));
   }, []);
@@ -72,7 +86,10 @@ export default function AuthModal({ type }: Props) {
                 onInputChange={onInputsChange}
                 type={type}
               />
-              <button className='uppercase bg-red-600 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400'>
+              <button
+                disabled={disabled}
+                className='uppercase bg-red-600 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400'
+              >
                 {text(type, 'Sign in', 'Create Account')}
               </button>
             </div>
